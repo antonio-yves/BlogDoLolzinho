@@ -50,9 +50,9 @@ class Champion(models.Model):
 Para testar e conhecer o projeto, você deve realizar o seguinte passo a passo:
 1. Clone o projeto para o seu computador:
 > git clone https://github.com/antonio-yves/blog-lolzinho.git
-2. Instale as dependências do projeto
+2. Instale as dependências do projeto:
 > pip install -r requeriments.txt
-3. Realize a criação do banco de dados, caso você tenha excluído o arquivo "db.sqlite3". Execute os comandos nessa ordem
+3. Realize a criação do banco de dados, caso você tenha excluído o arquivo "db.sqlite3". Execute os comandos nessa ordem:
 > python manage.py makemigrations core
 >
 > python manage.py makemigrations blog
@@ -62,9 +62,9 @@ Para testar e conhecer o projeto, você deve realizar o seguinte passo a passo:
 > python manage.py migrate blog
 >
 > python manage.py migrate
-4. Crie um super usuário (Administrador)
+4. Crie um super usuário (Administrador):
 > python manage.py createsuperuser
-5. Execute o projeto
+5. Execute o projeto:
 > python manage.py runserver
 
 
