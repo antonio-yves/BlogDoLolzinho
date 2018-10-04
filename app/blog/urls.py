@@ -14,4 +14,5 @@ urlpatterns = [
 	path('search/', blog.ResultsView.as_view(), name = 'search'),
 	path('post/<pk>', blog.NewsDetail.as_view(), name = 'news-detail'),
 	path('about/', blog.About.as_view(), name = 'about'),
+	path('contact/', blog.Contact.as_view(), name = 'contact'),
 ]

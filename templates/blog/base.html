@@ -43,7 +43,7 @@
               <a class="nav-link" href="{% url 'blog:champions' %}">Campeões</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contato</a>
+              <a class="nav-link" href="{% url 'blog:contact' %}">Contato</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'blog:about' %}">Sobre o Jogo</a>
@@ -73,6 +73,7 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/my-js.js' %}"></script>
     <script src="{% static 'home/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'home/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 

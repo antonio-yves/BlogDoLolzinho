@@ -1,0 +1,94 @@
+{% extends './base.html' %}
+
+{% block content %}
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+          <h1 class="my-4">Contato</h1>
+
+          <div>
+            <form>
+              <div class="form-group">
+                <label for="name">Seu Nome</label>
+                <input type="text" class="form-control" id="name" placeholder="Nome" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Seu E-mail</label>
+                <input type="email" class="form-control" id="email" placeholder="E-mail" required>
+              </div>
+              <div class="form-group">
+                <label for="assunto">Assunto</label>
+                <select class="form-control" id="assunto">
+                  <option>Selecione um assunto</option>
+                  <option>Sugestão</option>
+                  <option>Elogio</option>
+                  <option>Dúvidas</option>
+                  <option>Quero participar da equipe</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="text">Seu Texto</label>
+                <textarea class="form-control" rows="3" id="text" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-success">Enviar</button>
+            </form>
+          </div>
+
+        </div>
+
+
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Side Widget - Logo do Jogo -->
+          <div class="card my-4">
+            <div class="card-body">
+              <a href="https://br.leagueoflegends.com/pt/" target="_blank"><img src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/playnow-global/pt_BR/cbe4e8d0768d5d7a7673d095daec915fe2f828ea/assets/img/lol-logo.png" width="100%"></a>
+            </div>
+          </div>
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Pesquisar</h5>
+            <div class="card-body">
+              <form method="get" role="search" action="{% url 'blog:search' %}">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Pesquisar notícias..." name="q">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button"><i class="fas fa-search"></i></button>
+                </span>
+              </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Side Widget - Sobre o Blog -->
+          <div class="card my-4">
+            <h5 class="card-header">Sobre o Blog</h5>
+            <div class="card-body">
+              O Blog do Lolzinho é uma iniciativa dos alunos Antonio Yves, Maria Francisca e Rafael Almeida do 4º INTIN 2018 do IFPB - Campus Cajazeiras. Que buscam mostrar aos jogadores de
+              League of Legends o que se passa além do jogo. Fique por dentro de tudo que rola no mundo do LoL, e claro, conheça os principais campeões do jogo e suas histórias.
+            </div>
+          </div>
+
+          <!-- Side Widget - Acesso ADM -->
+          <div class="card my-4">
+            <h5 class="card-header">Acesso Administrativo</h5>
+            <div class="card-body">
+              {% if request.user.is_staff %}
+              <h6>Bem vindo, {{request.user.first_name}}</h6>
+              <div><a href="/admin/">Acessar painel administrativo</a></div>
+              <div><a href="{% url 'core:logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></div>
+              {% else %}
+              <a href="{% url 'core:login' %}">Login</a>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+{% endblock %}
