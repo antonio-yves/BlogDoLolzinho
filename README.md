@@ -46,28 +46,21 @@ class Champion(models.Model):
 		verbose_name_plural = 'Campeões'
 ```
 
-## Usando o Projeto
+## Testando
 Para testar e conhecer o projeto, você deve realizar o seguinte passo a passo:
 1. Clone o projeto para o seu computador 
 > git clone https://github.com/antonio-yves/blog-lolzinho.git
-2. Crie um ambiente virtual
-> python -m venv "nome do ambiente"
-3. Ative o ambiente
-Para ativar o ambiente no Windows você deve estar na pasta do ambiente e realizar o seguinte comando
-> ./"nome do ambiente"/Scripts/activate
-Para ativar no Linux você deve estar na pasta do projeto e realizar o seguinte comando
-> source "nome do ambiente"/bin/activate
-4. Instale as dependências do projeto
+3. Instale as dependências do projeto
 > pip install -r requeriments.txt
-5. Realize a criação do banco de dados, caso você tenha excluído o arquivo "db.sqlite3". Execute os comandos nessa ordem
+4. Realize a criação do banco de dados, caso você tenha excluído o arquivo "db.sqlite3". Execute os comandos nessa ordem
 > python manage.py makemigrations core
 > python manage.py makemigrations blog
 > python manage.py migrate core
 > python manage.py migrate blog
 > python manage.py migrate
-6. Crie um super usuário (Administrador)
+5. Crie um super usuário (Administrador)
 > python manage.py createsuperuser
-7. Execute o projeto
+6. Execute o projeto
 > python manage.py runserver
 
 
