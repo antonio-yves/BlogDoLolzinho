@@ -1,0 +1,100 @@
+{% extends './base.html' %}
+
+{% block content %}
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+          <div class="my-4"></div>
+
+          <!-- Blog Post -->
+          {% for noticia in noticias %}
+          <div class="card mb-4">
+            <img class="card-img-top" src="/media/{{noticia.image}}" alt="{{noticia.name}}" name="{{noticia.name}}">
+            <div class="card-body">
+              <h2 class="card-title">{{noticia.name}}</h2>
+              <p class="card-text">{{ noticia.description|truncatechars:250 }}</p>
+              <a href="{% url 'blog:news-detail' noticia.pk %}" class="btn btn-primary">Ler mais &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+              Postado em {{noticia.create}} por
+              {{noticia.user.first_name}}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Side Widget - Logo do Jogo -->
+          <div class="card my-4">
+            <div class="card-body">
+              <a href="https://br.leagueoflegends.com/pt/" target="_blank"><img src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/playnow-global/pt_BR/cbe4e8d0768d5d7a7673d095daec915fe2f828ea/assets/img/lol-logo.png" width="100%"></a>
+            </div>
+          </div>
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Pesquisar</h5>
+            <div class="card-body">
+              <form method="get" role="search" action="{% url 'blog:search' %}">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Pesquisar notícias..." name="q">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button"><i class="fas fa-search"></i></button>
+                </span>
+              </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Side Widget - Sobre o Blog -->
+          <div class="card my-4">
+            <h5 class="card-header">Sobre o Blog</h5>
+            <div class="card-body">
+              O Blog do Lolzinho é uma iniciativa dos alunos Antonio Yves, Maria Francisca e Rafael Almeida do 4º INTIN 2018 do IFPB - Campus Cajazeiras. Que buscam mostrar aos jogadores de
+              League of Legends o que se passa além do jogo. Fique por dentro de tudo que rola no mundo do LoL, e claro, conheça os principais campeões do jogo e suas histórias.
+            </div>
+          </div>
+
+          <!-- Side Widget - Campeões -->
+          <div class="card my-4">
+            <h5 class="card-header">Campeões</h5>
+            <div class="card-body">
+              {% for campeao in campeoes %}
+              <div class="media">
+                <div class="media-left media-middle">
+                  <a href="{% url 'blog:champion-detail' campeao.id %}">
+                    <img class="media-object" src="/media/{{campeao.image}}" alt="{{campeao.name}}" width="64" height="64">
+                  </a>
+                </div>
+                <div class="media-body" style="margin-left: 10px;">
+                  <h6 class="media-heading">{{campeao.name}}</h6>
+                  {{ campeao.description|truncatechars:50 }}
+                </div>
+                <hr>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- Side Widget - Acesso ADM -->
+          <div class="card my-4">
+            <h5 class="card-header">Acesso Administrativo</h5>
+            <div class="card-body">
+              {% if request.user.is_staff %}
+              <h6>Bem vindo, {{request.user.first_name}}</h6>
+              <div><a href="/admin/">Acessar painel administrativo</a></div>
+              <div><a href="{% url 'core:logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></div>
+              {% else %}
+              <a href="{% url 'core:login' %}">Login</a>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+{% endblock %}

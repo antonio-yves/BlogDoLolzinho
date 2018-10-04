@@ -1,0 +1,98 @@
+{% extends './base.html' %}
+
+{% block content %}
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+          <h1 class="my-4">Sobre o Jogo</h1>
+
+          <!-- Blog Post -->
+          <div class="card mb-4">
+            <img class="card-img-top" src="https://image.redbull.com/rbcom/010/2017-01-03/1331837749223_2/0010/1/1500/1000/1/the-fields-of-justice-have-a-complicated-history.JPG" alt="Sobre o Jogo" name="Sobre o Jogo">
+            <div class="card-body">
+              <h3>O que é League of Legends?</h3>
+              <p class="card-text">League of Legends é um jogo online competitivo que mistura a velocidade e a intensidade de um RTS com elementos de RPG. Duas equipes de poderosos campeões, cada um com design e estilo único, lutam em diversos campos de batalha e modos de jogo. Com um elenco de campeões em constante expansão, atualizações frequentes e uma cena competitiva exuberante, League of Legends oferece diversão incessante para jogadores de todos os níveis de habilidade.</p>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <img class="card-img-top" src="http://assets.vg247.com/current//2014/04/league_of_legends.jpg" alt="Junte-se ao LoL" name="Junte-se ao LoL">
+            <div class="card-body">
+              <h3>Junte-se ao LoL</h3>
+              <p class="card-text">Baixe League of Legends agora mesmo e junte-se a dezenas de milhões que já estão competindo.</p>
+              <hr>
+              <h4>Lute mano a mano</h4>
+              <p>Combine raciocínio estratégico, reflexos rápidos e coordenação da equipe para esmagar seus inimigos em confrontos menores e intensas batalhas 5v5</p>
+              <hr>
+              <h4>Crie estratégias e evolua</h4>
+              <p>Com atualizações frequentes, vários mapas e modos de jogo e novos campeões juntando-se à Liga o tempo todo, o único limite para o seu sucesso é a sua engenhosidade</p>
+              <hr>
+              <h4>Crie estratégias e evolua</h4>
+              <p>Seja se divertindo numa partida contra bots ou conquistando posições no sistema de ligas, League of Legends tem a tecnologia para parear você rapidamente com um grupo de competidores com o mesmo nível de habilidade</p>
+              <hr>
+              <h4>Lute com honra</h4>
+              <p>Lute com honra e receba comendas especiais de outros jogadores como recompensa pelo espírito esportivo</p>
+              <hr>
+              <h4>Entre no mundo dos eSports</h4>
+              <p>League of Legends tem a cena competitiva mais ativa do mundo e conta com diversos torneios, incluindo a prestigiosa Championship Series, em que jogadores profissionais competem por milhões</p>
+              <hr>
+              <h4>A maior comunidade de jogos online do mundo</h4>
+              <p>Junte-se à maior comunidade de jogos online: faça amigos, forme equipes e enfrente dezenas de milhões de oponentes de países do outro lado do mundo, depois troque experiências no reddit, no YouTube, nos fóruns e onde mais quiser</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Side Widget - Logo do Jogo -->
+          <div class="card my-4">
+            <div class="card-body">
+              <a href="https://br.leagueoflegends.com/pt/" target="_blank"><img src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/playnow-global/pt_BR/cbe4e8d0768d5d7a7673d095daec915fe2f828ea/assets/img/lol-logo.png" width="100%"></a>
+            </div>
+          </div>
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Pesquisar</h5>
+            <div class="card-body">
+              <form method="get" role="search" action="{% url 'blog:search' %}">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Pesquisar notícias..." name="q">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button"><i class="fas fa-search"></i></button>
+                </span>
+              </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Side Widget - Sobre o Blog -->
+          <div class="card my-4">
+            <h5 class="card-header">Sobre o Blog</h5>
+            <div class="card-body">
+              O Blog do Lolzinho é uma iniciativa dos alunos Antonio Yves, Maria Francisca e Rafael Almeida do 4º INTIN 2018 do IFPB - Campus Cajazeiras. Que buscam mostrar aos jogadores de
+              League of Legends o que se passa além do jogo. Fique por dentro de tudo que rola no mundo do LoL, e claro, conheça os principais campeões do jogo e suas histórias.
+            </div>
+          </div>
+
+          <!-- Side Widget - Acesso ADM -->
+          <div class="card my-4">
+            <h5 class="card-header">Acesso Administrativo</h5>
+            <div class="card-body">
+              {% if request.user.is_staff %}
+              <h6>Bem vindo, {{request.user.first_name}}</h6>
+              <div><a href="/admin/">Acessar painel administrativo</a></div>
+              <div><a href="{% url 'core:logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></div>
+              {% else %}
+              <a href="{% url 'core:login' %}">Login</a>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+{% endblock %}

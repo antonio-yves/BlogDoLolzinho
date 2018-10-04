@@ -1,0 +1,68 @@
+{% extends './base.html' %}
+
+{% block content %}
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+          <h1 class="my-4">Campeões</h1>
+
+          <!-- Blog Post -->
+          {% for campeao in object_list %}
+          <div class="card mb-4">
+            <img class="card-img-top" src="/media/{{campeao.image}}" alt="{{campeao.name}}" name="{{campeao.name}}">
+            <div class="card-body">
+              <h2 class="card-title">{{campeao.name}}</h2>
+              <p class="card-text">{{ campeao.description|truncatechars:250 }}</p>
+              <a href="{% url 'blog:champion-detail' campeao.pk %}" class="btn btn-primary">Ler mais &rarr;</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Pesquisar</h5>
+            <div class="card-body">
+              <form method="get" role="search" action="{% url 'blog:search' %}">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Pesquisar notícias..." name="q">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button"><i class="fas fa-search"></i></button>
+                </span>
+              </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Side Widget - Sobre o Blog -->
+          <div class="card my-4">
+            <h5 class="card-header">Sobre o Blog</h5>
+            <div class="card-body">
+              O Blog do Lolzinho é uma iniciativa dos alunos Antonio Yves, Maria Francisca e Rafael Almeida do 4º INTIN 2018 do IFPB - Campus Cajazeiras. Que buscam mostrar aos jogadores de
+              League of Legends o que se passa além do jogo. Fique por dentro de tudo que rola no mundo do LoL, e claro, conheça os principais campeões do jogo e suas histórias.
+            </div>
+          </div>
+
+          <!-- Side Widget - Acesso ADM -->
+          <div class="card my-4">
+            <h5 class="card-header">Acesso Administrativo</h5>
+            <div class="card-body">
+              {% if request.user.is_staff %}
+              <h6>Bem vindo, {{request.user.first_name}}</h6>
+              <div><a href="/admin/">Acessar painel administrativo</a></div>
+              <div><a href="{% url 'core:logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></div>
+              {% else %}
+              <a href="{% url 'core:login' %}">Login</a>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+{% endblock %}
